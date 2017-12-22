@@ -145,6 +145,7 @@ id regionAsJSON(MKCoordinateRegion region) {
 #pragma clang diagnostic pop
 
 - (void)setInitialRegion:(MKCoordinateRegion)initialRegion {
+  if(!self.window) return;
   if (_initialRegionSet) return;
   _initialRegionSet = true;
   self.camera = [AIRGoogleMap makeGMSCameraPositionFromMap:self andMKCoordinateRegion:initialRegion];
@@ -337,10 +338,6 @@ id regionAsJSON(MKCoordinateRegion region) {
 
 - (void)setShowsIndoorLevelPicker:(BOOL)showsIndoorLevelPicker {
   self.settings.indoorPicker = showsIndoorLevelPicker;
-}
-
-- (BOOL)showsIndoorLevelPicker {
-  return self.settings.indoorPicker;
 }
 
 + (MKCoordinateRegion) makeGMSCameraPositionFromMap:(GMSMapView *)map andGMSCameraPosition:(GMSCameraPosition *)position {
